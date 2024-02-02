@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="icon.png"> <!-- Added favicon link -->
+    <title>DNA/RNA Nucleotides Counter</title>
+</head>
+<body>
+    <div class="container">
+        <h1>DNA/RNA Nucleotides Counter</h1>
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
+        <label for="sequence">Enter DNA/RNA Sequence:</label>
+        <textarea id="sequence" rows="4" cols="50" placeholder="Enter sequence..." required></textarea>
+        <label for="type">Select Sequence Type:</label>
+        <select id="type">
+            <option value="dna">DNA</option>
+            <option value="rna">RNA</option>
+        </select>
+        <button onclick="startConversion()">Count</button>
+        <div class="result-section">
+            <h2>Result:</h2>
+            <p id="result"></p>
+            <!-- Result Copied message -->
+            <div id="resultCopiedMessage">Result Copied</div>
+            <!-- Copy button -->
+            <button id="copyButton" onclick="copyResultToClipboard()">Copy Result</button>
+        </div>
+        
+        <!-- Buttons to open popups -->
+        <button onclick="openPopup('popupDNA')">Learn about DNA</button>
+        <button onclick="openPopup('popupRNA')">Learn about RNA</button>
+        <button onclick="openPopup('popupConversion')">Learn about "DNA/RNA Nucleotides Counter"</button>
+
+        <!-- Popup content -->
+        <div id="popupDNA" class="popup">
+            <span class="close-btn" onclick="closePopup('popupDNA')">&times;</span>
+            <h2>Information about DNA</h2>
+            <p>DNA, or deoxyribonucleic acid, is a molecule that carries most of the genetic instructions used in the development, functioning, and reproduction of all known living organisms and many viruses.</p>
+        </div>
+
+        <div id="popupRNA" class="popup">
+            <span class="close-btn" onclick="closePopup('popupRNA')">&times;</span>
+            <h2>Information about RNA</h2>
+            <p>RNA, or ribonucleic acid, is a polymeric molecule essential in various biological roles in coding, decoding, regulation, and expression of genes.</p>
+        </div>
+
+        <div id="popupConversion" class="popup">
+            <span class="close-btn" onclick="closePopup('popupConversion')">&times;</span>
+            <h2>Information about "DNA/RNA Nucleotides Counter"</h2>
+            <p>This tool allows you to rapidely count the number of the nucleotides cointained in any given DNA or RNA sequence.</p>
+        </div>
+
+        <!-- Credits section -->
+        <div id="credits">
+            <p>Credits: Giotas Orfeas-Dimitrios, 2023</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Add the progress bar JavaScript code here
+        function startConversion() {
+            document.getElementById("myProgress").style.display = "block";
+            var i = 0;
+            var elem = document.getElementById("myBar");
+            var width = 0;
+            var id = setInterval(frame, 5); // Reduced interval for faster progress
+
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    document.getElementById("myProgress").style.display = "none";
+                    showResult();
+                } else {
+                    width++;
+                    elem.style.width = width + "%";
+                }
+            }
+        }
+
+        function showResult() {
+            // Your existing conversion logic here
+            convertSequence();
+            // Show the copy button when there is a result and it is not an error
+            var result = document.getElementById("result").textContent;
+            if (result.toLowerCase().includes("error")) {
+                document.getElementById("copyButton").style.display = "none";
+            } else {
+                document.getElementById("copyButton").style.display = "block";
+            }
+            // Hide Result Copied message
+            document.getElementById("resultCopiedMessage").style.display = "none";
+        }
+
+        // Popup functions
+        function openPopup(popupId) {
+            document.body.classList.add('show-popup'); // Add class to adjust brightness
+            document.getElementById(popupId).style.display = "block";
+        }
+
+        function closePopup(popupId) {
+            document.body.classList.remove('show-popup'); // Remove class to revert brightness
+            document.getElementById(popupId).style.display = "none";
+        }
+
+        // Copy result to clipboard
+        function copyResultToClipboard() {
+            var resultElement = document.getElementById("result");
+            var textArea = document.createElement("textarea");
+            textArea.value = resultElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            // Show Result Copied message
+            var resultCopiedMessage = document.getElementById("resultCopiedMessage");
+            resultCopiedMessage.style.display = "block";
+
+            // Hide Result Copied message after 1.5 seconds
+            setTimeout(function () {
+                resultCopiedMessage.style.display = "none";
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

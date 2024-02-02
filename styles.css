@@ -1,0 +1,156 @@
+
+#myProgress {
+    width: 100%;
+    background-color: #f4f4f4;
+    margin-bottom: 15px; 
+    display: none; 
+}
+
+#myBar {
+    width: 0;
+    height: 30px;
+    background-color: #007bff; 
+    color: white;
+}
+
+
+#credits {
+    margin-top: 30px;
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    border-radius: 10px; 
+}
+
+.popup h2 {
+    color: #007bff;
+}
+
+.close-btn {
+    cursor: pointer;
+    color: #007bff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+.result-section {
+    text-align: center;
+    overflow: auto; 
+    max-height: 200px; 
+    margin-bottom: 10px; 
+}
+
+.result-header {
+    text-align: center;
+}
+
+#result {
+    word-wrap: break-word; 
+}
+
+
+#copyButton {
+    display: none;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px; 
+}
+
+#copyButton:hover {
+    background-color: #0056b3;
+}
+
+
+#resultCopiedMessage {
+    display: none;
+    color: #28a745; 
+    margin-top: 10px;
+}
+
+
+body {
+    background-image: url('DNA.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(100%); 
+}
+
+
+body.show-popup {
+    filter: brightness(100%) !important; 
+}
+
+.popup.show-popup {
+    filter: brightness(100%) !important; 
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+textarea, select, button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    color: #007bff;
+}
